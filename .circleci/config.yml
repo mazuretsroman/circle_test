@@ -38,11 +38,11 @@ jobs:
       - checkout
       - ruby/install-deps
       - run:
-        command: 'dockerize -wait tcp://localhost:5432 -timeout 1m'
-        name: 'Wait for db'
+          name: 'Wait for db'
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
-        command: 'bundle exec rails db:schema:load --trace'
-        name: Database setuo
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
       - ruby/rspec-test:
           include: spec/**/*_spec.rb
 
