@@ -47,7 +47,9 @@ jobs:
       - run:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
-      - ruby/rspec-test
+      - run:
+          name: Rspec
+          command: bundle exec rspec --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec/results.xml --format progress
 
 
 # Invoke jobs via workflows
